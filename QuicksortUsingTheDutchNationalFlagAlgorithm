@@ -1,1 +1,41 @@
+void DutchNationFlag(vector<int> &arr,int left,int& midleft ,int& midright,int right){
+    
+    int pivot=arr[left];
+    int mid=left;
 
+    while(mid<=midright){
+        if(arr[mid]<pivot){
+            swap(arr[mid],arr[midleft]);
+            mid++;
+            midleft++;  
+        }
+        else if(arr[mid]==pivot)
+            mid++;
+        else{
+            swap(arr[mid],arr[midright]);
+            midright--;
+        }
+    }
+    
+}
+
+void QuickSort(vector<int> &arr,int left,int right){
+    if(left>=right)
+    return ;
+
+    int midleft=left;
+    int midright=right;
+
+    DutchNationFlag(arr,left,midleft,midright,right);
+
+    QuickSort(arr,left,midleft-1);
+    QuickSort(arr,midright+1,right);
+}
+
+vector<int> quickSortUsingDutchNationalFlag(vector<int> &arr)
+{
+    int s=0,e=arr.size()-1;
+
+    QuickSort(arr,s,e);
+    return arr;
+}
