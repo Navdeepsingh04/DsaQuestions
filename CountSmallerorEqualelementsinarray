@@ -1,1 +1,63 @@
+#include <bits/stdc++.h> 
 
+int counter(int*b, int m, int key){
+
+    int s =0; int e = m-1;
+
+    while(s<=e){
+
+        int mid = (s+e)/2;
+
+        if(b[mid]==key){
+
+            if(mid!=e && b[mid+1]==key){
+
+                s = mid+1;
+
+            }
+
+            else return mid+1;
+
+        }
+
+        if(b[mid]<key){
+
+            if(b[mid+1]>key || mid == e){
+
+                return mid+1;
+
+            }
+
+            s = mid+1;
+
+        }
+
+        if (b[mid]>key){
+
+            e = mid-1;
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+vector < int > countSmallerOrEqual(int * a, int * b, int n, int m) {
+
+    vector<int>ans;
+
+    sort(b, b+m);
+
+    for(int i = 0;i<n; i++){
+
+        int count = counter(b, m,a[i]);
+
+        ans.push_back(count);
+
+    }
+
+    return ans;
+
+}
