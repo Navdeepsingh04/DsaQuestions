@@ -43,7 +43,6 @@ int counter(int*b, int m, int key){
     return 0;
 
 }
-
 vector < int > countSmallerOrEqual(int * a, int * b, int n, int m) {
 
     vector<int>ans;
