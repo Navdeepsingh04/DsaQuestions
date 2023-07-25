@@ -1,28 +1,88 @@
 
-#include<bits/stdc++.h>
+int firstElement(vector<int> &arr,int x){
+	
+	int n = arr.size();
+	
+	int position = -1;
+	
+	int low = 0,high = n-1;
+	
+	while(low<=high){
+		
+		int mid = low +(high-low)/2;
+		
+		if(arr[mid]==x)
+		{
+		
+		position = mid;
+		
+		high = mid - 1;
+		}
 
-vector<int> searchRange(vector<int>& a, int x) {
+		else if(arr[mid]>x)
+		{
+			high = mid -1;
+		}
+		else
+		{
+			low = mid+1;
+			}
 
-    int n = a.size();
+	}
+	return position;
+}
 
-    int first = lower_bound(a.begin(), a.end(), x) - a.begin();
-
-    int last = upper_bound(a.begin(), a.end(), x) - a.begin() - 1;
-
-    vector<int> ans;
-
-    if(first==n || a[first]!=x)
-
-    {
-
-        first=-1; last =-1;
-
-    }
-
-    ans.push_back(first);
-
-    ans.push_back(last);
-
-    return ans;
+int lastElement(vector<int> &arr,int x){
+	
+	int position = -1;
+	
+	int n = arr.size();
+	
+	int low = 0;
+	
+	int high = n-1;
+	
+	while(low<=high){
+		
+		int mid = low + (high-low)/2;
+		
+		if(arr[mid]==x)
+		{
+			
+			position = mid;
+			
+			low = mid+1;
+		
+		}
+		
+		else if(arr[mid]>x)
+		{
+			
+			high = mid-1;
+		
+		}
+		
+		else{low = mid+1;}
+	
+	}
+   
+   return position;
 
 }
+
+
+vector<int> searchRange(vector<int> &arr, int x)
+{
+ //Write your code here.
+ 
+ vector<int> ans;
+ 
+ ans.push_back(firstElement(arr,  x));
+ 
+ ans.push_back(lastElement(arr,  x));
+
+ return ans;
+
+}
+
+
