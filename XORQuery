@@ -1,1 +1,29 @@
+#include <bits/stdc++.h>
 
+vector<int> xorQuery(vector<vector<int>> &queries)
+
+{
+
+  // Write your code here
+
+  vector<int> l;
+
+  for (int i = 0; i < queries.size(); i++) {
+
+    if (queries[i][0] == 1) {
+
+      l.push_back(queries[i][1]);
+
+    }
+
+    else {
+
+      for (int j = 0; j < l.size(); j++) {
+
+        l[j] = l[j] ^ queries[i][1];
+      }
+    }
+  }
+
+  return l;
+}
