@@ -1,1 +1,43 @@
+nt *getProductArrayExceptSelf(int *arr, int n)
+
+{
+
+    //Write your code here
+
+    int *ans=new int[n];
+
+    int M=1e9+7;
+
+    memset(ans,1,n);
+
+    if(n==1) return ans;
+
+    int temp=1;
+
+    for(int i=0;i<n;i++){
+
+        ans[i]=temp;
+
+        temp=(1LL*temp*arr[i])%M;
+
+    }
+
+ 
+
+    int temp_2=1;
+
+    for(int i=n-1;i>=0;i--){
+
+        ans[i]=(1LL*ans[i]*temp_2)%M;
+
+        temp_2=(1LL*temp_2*arr[i])%M;
+
+    }
+
+ 
+
+    return ans;
+
+}
+
 
