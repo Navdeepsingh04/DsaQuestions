@@ -1,1 +1,39 @@
+#include<bits/stdc++.h>
+bool isValidPair(vector<int> &arr, int n, int k, int m)
+{
+    // if n is odd then pair cant be made.
+    if(n%2 !=0){
+        return false;
+    }
+    unordered_map<int,int>mp;
+    /* find the remainder on dividing each array element and store
+    the frequency of reaminders*/ 
+    for(int i = 0;i<n; i++){
+        mp[arr[i]%k]++;
+        
+    }
 
+    /*lets suppose a kind of  elment of array gives remainder (m-3) when divided by k.
+    then, if there exist an another kind of element which gives remainder 3 when divided by k.
+    In this case adding both  kind of element will give remainder m.
+    
+    no of first kind elements should be equal be equal to the second kind. */ 
+
+
+    
+    int noOf1stKind,noOf2ndkind;
+    for(int i = 0; i<n;i++){
+        noOf1stKind = mp[arr[i]%k];
+        
+        if(arr[i]%k <=m){
+            noOf2ndkind = mp[m-arr[i]%k];
+        }
+        else{
+            noOf2ndkind= mp[k-(arr[i]%k) +m];
+        }
+        if(noOf1stKind!=noOf2ndkind)
+            return false;
+    }
+    return true;
+    
+}
